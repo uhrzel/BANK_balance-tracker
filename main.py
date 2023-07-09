@@ -1,5 +1,5 @@
 import datetime
-
+#val
 def update_balance_sheet():
     # Initialize balance to 0
     balance = 0
