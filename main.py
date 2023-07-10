@@ -1,18 +1,16 @@
 import datetime
-#val
+
 def update_balance_sheet():
     # Initialize balance to 0
-    balance = 0
+    balance = 0.0
     
     try:
         with open('C:\\Users\\User\\Documents\\textFolder\\AUB_balance.txt', 'r') as file:
             lines = file.readlines()
             if lines:
-             
                 last_line = lines[-1]
-                balance = int(last_line.split(': ')[1].replace(',', ''))
+                balance = float(last_line.split(': ')[1].replace(',', ''))
     except FileNotFoundError:
-      
         pass
     
     continue_process = 'Y'
@@ -21,10 +19,10 @@ def update_balance_sheet():
         confirm = input('Are you sure (Y/N): ')
         if confirm.upper() == 'Y':
             deposit = deposit.replace(',', '')  
-            balance += int(deposit)  
+            balance += float(deposit)  
             with open('C:\\Users\\User\\Documents\\textFolder\\AUB_balance.txt', 'a') as file:
-                file.write(datetime.datetime.now().strftime('%B %d, %Y (%I:%M %p)') + ': ' + '{:,}'.format(balance) + '\n')  # Format balance with commas
-            print('Output: {}: {}'.format(datetime.datetime.now().strftime('%B %d,%Y'), '{:,}'.format(balance)))  # Format balance with commas
+                file.write(datetime.datetime.now().strftime('%B %d, %Y (%I:%M %p)') + ': ' + '{:,.2f}'.format(balance) + '\n')  # Format balance with commas
+            print('Output: {}: {}'.format(datetime.datetime.now().strftime('%B %d,%Y'), '{:,.2f}'.format(balance)))  # Format balance with commas
         else:
             print('Deposit operation cancelled...')
         continue_process = input('Do you want to continue (Y/N): ')
